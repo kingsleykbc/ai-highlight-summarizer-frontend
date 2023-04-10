@@ -1,46 +1,51 @@
-# Getting Started with Create React App
+# AI-Highlighted-Summarizer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+AI-Highlighted-Summarizer is a Chrome extension that enables users to highlight text on webpages and receive AI-generated summaries. It is built using React, TypeScript, Tailwind CSS, CSS Modules, NestJS, and MongoDB.
 
-## Available Scripts
+This README provides step-by-step instructions on how to clone and run the app on your Chrome browser.
 
-In the project directory, you can run:
+## Prerequisites
 
-### `npm start`
+Before you begin, ensure you have the following software installed on your computer:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- [Node.js](https://nodejs.org/en/download/) (version 12 or higher)
+- [npm](https://www.npmjs.com/get-npm) (usually included with Node.js)
+- [Git](https://git-scm.com/downloads)
+- [Google Chrome](https://www.google.com/chrome/) (latest version)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Clone the Repository
 
-### `npm test`
+1.  Open a terminal or command prompt.
+2.  Navigate to the directory where you want to clone the repository.
+3.  Run the following command to clone the repository:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+bashCopy code
 
-### `npm run build`
+`git clone https://github.com/your-username/AI-Highlighted-Summarizer.git`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Replace `your-username` with your GitHub username, or use the correct URL if the repository is under an organization or different username.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Install Dependencies
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1.  Navigate to the root directory of the cloned project:
+    `cd AI-Highlighted-Summarizer`
 
-### `npm run eject`
+2.  Install the required dependencies by running:
+    `npm install`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Build the Extension
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1.  Build the extension by running:
+    `npm run build`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+This command will generate a `build` folder in the project root directory.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Load the Extension in Chrome
 
-## Learn More
+1.  Open Google Chrome.
+2.  Click on the three-dot menu in the upper-right corner and navigate to **More tools** > **Extensions**.
+3.  Enable **Developer mode** by toggling the switch in the upper-right corner of the Extensions page.
+4.  Click on the **Load unpacked** button.
+5.  In the file picker dialog, navigate to the `build` folder generated earlier in the project root directory, and click **Select Folder** (or **Open**).
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+The AI-Highlighted-Summarizer extension should now be loaded in your Chrome browser, and you should see its icon next to the address bar. Click on the icon to open the popup and start using the extension!

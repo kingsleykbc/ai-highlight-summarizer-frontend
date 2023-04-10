@@ -1,0 +1,51 @@
+.text {
+	@apply text-base;
+}
+
+.text.h3 {
+	@apply font-bold text-lg;
+}
+
+.text.h3 {
+	@apply font-bold text-lg;
+}
+
+.text.white {
+	@apply text-white;
+}
+
+.text.gray {
+	@apply text-gray-400;
+}
+
+.text.xl {
+	@apply text-xl;
+}
+
+.text.lg {
+	@apply text-lg;
+}
+
+.text.md {
+	@apply text-base;
+}
+
+.text.sm {
+	@apply text-sm;
+}
+
+.text.xs {
+	@apply text-xs;
+}
+
+.text.bold {
+	@apply font-bold;
+}
+
+.text.semibold {
+	@apply font-semibold;
+}
+
+.text.normal {
+	@apply font-normal;
+}

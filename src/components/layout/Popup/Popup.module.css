@@ -1,0 +1,19 @@
+.popup {
+	@apply fixed;
+}
+
+.popupButton {
+	@apply text-3xl !py-0 !p-0 w-20 h-20 flex items-center justify-center align-middle leading-3 fixed right-10 bottom-10 z-10;
+}
+
+.content {
+	@apply bg-container rounded-xl bottom-20 fixed right-20 w-[calc(100%-100px)] h-[calc(100%-100px)] p-6 pt-4 max-w-md max-h-[600px] shadow-lg flex flex-col gap-3;
+}
+
+.titleSection {
+	@apply flex items-center justify-between;
+}
+
+.contentBody {
+	@apply grow overflow-auto;
+}
