@@ -3,8 +3,7 @@ import TagInput from '../../../components/TagInput/TagInput';
 import styles from './HighlightsListFilter.module.css';
 import Text from '../../../components/Text/Text';
 import { FaSortAmountDown as SortIcon } from 'react-icons/fa';
-
-type SortByType = 'newest' | 'oldest';
+import { SortByType } from '../../../services/highlights';
 
 const HighlightsListFilter = () => {
 	const [tags, setTags] = useState<string[]>([]);

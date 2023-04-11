@@ -6,3 +6,10 @@ export type HighlightDataType = {
 	label: string;
 	tags: string[];
 };
+
+export type SortByType = 'newest' | 'oldest';
+
+export type HighlightsFetchFiltersType = {
+	tags: string[];
+	sortBy: SortByType;
+};

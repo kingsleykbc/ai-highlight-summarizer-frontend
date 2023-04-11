@@ -2,14 +2,22 @@
 	@apply fixed z-10 inset-0 overflow-y-auto;
 }
 
-.screen {
-	@apply flex items-center justify-center min-h-screen;
-}
-
 .back {
-	@apply fixed inset-0 transition-opacity bg-black opacity-30;
+	@apply fixed inset-0 z-10 transition-opacity bg-black opacity-40;
 }
 
 .box {
-	@apply bg-white rounded-lg overflow-hidden shadow-xl transform transition-all px-4 py-5 sm:p-6;
+	@apply bg-container z-50 fixed rounded-lg overflow-auto shadow-xl p-4 left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 max-w-[95%] max-h-[95%] flex flex-col gap-4;
+}
+
+.closeButton {
+	@apply w-10 h-10 border-2 border-darkBorder rounded-md text-white font-bold text-2xl pb-6 active:scale-90 transition-all hover:text-red-400 hover:bg-containerDarkest;
+}
+
+.topSection {
+	@apply flex justify-between items-center;
+}
+
+.content {
+	@apply overflow-auto grow;
 }

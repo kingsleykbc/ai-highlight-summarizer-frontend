@@ -1,0 +1,46 @@
+.title {
+	@apply flex items-center gap-6;
+}
+
+.icon,
+.saveIcon {
+	@apply fill-white text-3xl opacity-50 active:scale-90 bg-containerDarkest rounded-lg p-1;
+}
+
+.saveIcon {
+	@apply !fill-green-500 !opacity-75;
+}
+.content {
+	@apply h-full flex flex-col;
+}
+.summary {
+	@apply grow bg-containerDarker overflow-auto rounded-md flex flex-col-reverse md:flex-row items-start gap-2 p-6;
+}
+
+.section {
+	@apply shrink-0 grow w-full md:w-[calc(50%-40px)];
+}
+
+.label {
+	@apply bg-containerDarkest inline-block py-2 px-4 rounded-lg font-semibold mb-4;
+}
+
+.section.original {
+	@apply border-t-2 border-container mt-4 pt-4 md:mt-0 md:pt-0 md:mr-4 md:pr-4 md:border-t-0 md:border-r-2;
+}
+
+.bottomSection {
+	@apply flex justify-between items-center pt-4;
+}
+
+.tagsAndDates {
+	@apply flex items-center gap-4;
+}
+
+.tags {
+	@apply bg-containerDarker rounded-lg p-2;
+}
+
+.dot {
+	@apply text-white opacity-30;
+}

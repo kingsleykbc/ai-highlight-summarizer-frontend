@@ -16,9 +16,9 @@ option {
 }
 
 ::-webkit-scrollbar {
-	@apply w-2 rounded-full bg-[rgb(65,65,65)];
+	@apply w-2 h-2 rounded-full bg-[rgb(65,65,65)];
 }
 
 ::-webkit-scrollbar-thumb {
-	@apply rounded-full bg-containerDarkest cursor-grab;
+	@apply rounded-full bg-[rgb(95,95,95)] cursor-grab h-2;
 }

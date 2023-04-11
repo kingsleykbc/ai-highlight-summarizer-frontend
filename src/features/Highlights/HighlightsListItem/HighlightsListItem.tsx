@@ -2,14 +2,16 @@ import { HighlightDataType } from '../../../services/highlights';
 import Text from '../../../components/Text/Text';
 import { timeAgo } from '../../../utils/dateTime';
 import styles from './HighlightsListItem.module.css';
+import { displayTags } from '../../../utils/formatting';
 
 export interface HighlightsListItemProps {
 	data: HighlightDataType;
+	onClick: () => void;
 }
 
-const HighlightsListItem = ({ data: { summary, createdAt, label, tags } }: HighlightsListItemProps) => {
+const HighlightsListItem = ({ data: { summary, createdAt, label, tags }, onClick }: HighlightsListItemProps) => {
 	return (
-		<div className={styles.highlightListItem}>
+		<div role='button' className={styles.highlightListItem} onClick={() => onClick()}>
 			<Text tag='h4' size='sm' weight='semibold'>
 				{label}
 			</Text>
@@ -21,7 +23,7 @@ const HighlightsListItem = ({ data: { summary, createdAt, label, tags } }: Highl
 					{timeAgo(createdAt)}
 				</Text>
 				<Text className={styles.tags} size='sm'>
-					{tags.map(tag => `#${tag}`).join(', ')}
+					{displayTags(tags)}
 				</Text>
 			</div>
 		</div>
