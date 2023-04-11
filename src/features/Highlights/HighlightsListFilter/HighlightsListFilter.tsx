@@ -1,13 +1,19 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import TagInput from '../../../components/TagInput/TagInput';
 import styles from './HighlightsListFilter.module.css';
 import Text from '../../../components/Text/Text';
 import { FaSortAmountDown as SortIcon } from 'react-icons/fa';
 import { SortByType } from '../../../services/highlights';
+import { useHighlights } from '../../../contexts/HighlightsContext';
 
 const HighlightsListFilter = () => {
 	const [tags, setTags] = useState<string[]>([]);
 	const [sortBy, setSortBy] = useState<SortByType>('newest');
+	const { refetchHighlights } = useHighlights();
+
+	useEffect(() => {
+		refetchHighlights({ tags, sortBy });
+	}, [tags, sortBy]);
 
 	return (
 		<div className={styles.highlightsFilter}>

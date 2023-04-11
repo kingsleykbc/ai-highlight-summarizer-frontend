@@ -3,7 +3,7 @@
 }
 
 .rti--input {
-	@apply bg-transparent placeholder:text-textGray text-white outline-none p-0 w-full max-w-[100px] shrink;
+	@apply placeholder:text-textGray text-white outline-none p-0 max-w-full w-auto grow shrink;
 }
 
 .rti--tag {

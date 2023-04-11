@@ -1,3 +1,11 @@
 .button {
 	@apply bg-primary py-2 px-6 text-white font-semibold rounded-full shadow-md hover:brightness-75 active:scale-90 transition-all disabled:opacity-60;
 }
+
+.loader {
+	@apply !h-3;
+}
+
+.loader div {
+	@apply h-3 w-3;
+}

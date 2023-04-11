@@ -1,0 +1,7 @@
+.errorContainer {
+	@apply flex flex-col gap-4 items-center justify-center w-full p-6 min-h-[200px] bg-containerDarker rounded-lg;
+}
+
+.errorIcon {
+	@apply text-5xl fill-red-500;
+}

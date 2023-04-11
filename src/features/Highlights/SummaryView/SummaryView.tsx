@@ -9,6 +9,7 @@ import { displayTags } from '../../../utils/formatting';
 import { RxDotFilled as Dot } from 'react-icons/rx';
 import { fullDate } from '../../../utils/dateTime';
 import Button from '../../../components/Button/Button';
+import { useHighlights } from '../../../contexts/HighlightsContext';
 
 export interface SummaryViewProps {
 	show: boolean;
@@ -16,16 +17,30 @@ export interface SummaryViewProps {
 	data: HighlightDataType | null;
 }
 
-const SummaryView = ({ data, show, toggle }: SummaryViewProps) => {
-	if (!data) return null;
-	const { tags, summary, createdAt, text } = data;
+interface TitleProps {
+	title?: string;
+	changeHighlightLabel: (newLabel: string) => void;
+}
 
-	const handleDelete = () => {
-		// TODO: Handle delete
+const SummaryView = ({ data, show, toggle }: SummaryViewProps) => {
+	const { deleteHighlight, changeHighlightLabel, loading } = useHighlights();
+
+	if (!data) return null;
+	const { _id, tags, summary, createdAt, text } = data;
+
+	const handleDelete = async () => {
+		await deleteHighlight(_id);
+		toggle();
 	};
 
 	return (
-		<Modal title={<Title title={data?.label} />} show={show} toggle={toggle} height='800px' width='1200px'>
+		<Modal
+			title={<Title changeHighlightLabel={changeHighlightLabel} title={data?.label} />}
+			show={show}
+			toggle={toggle}
+			height='800px'
+			width='1200px'
+		>
 			<div className={styles.content}>
 				<Views summary={summary} text={text} />
 				<div className={styles.bottomSection}>
@@ -36,7 +51,7 @@ const SummaryView = ({ data, show, toggle }: SummaryViewProps) => {
 						<Dot className={styles.dot} />
 						<Text>{fullDate(createdAt)}</Text>
 					</div>
-					<Button onClick={() => handleDelete()} label='Delete' />
+					<Button loading={loading} onClick={() => handleDelete()} label='Delete' />
 				</div>
 			</div>
 		</Modal>
@@ -45,13 +60,13 @@ const SummaryView = ({ data, show, toggle }: SummaryViewProps) => {
 
 export default SummaryView;
 
-const Title = ({ title }: { title?: string }) => {
+const Title = ({ title, changeHighlightLabel }: TitleProps) => {
 	const [edit, setEdit] = useState(false);
 	const [newTitle, setNewTitle] = useState(title || '');
 	if (!title) return null;
 
 	const handleChange = () => {
-		// TODO: Handle change
+		changeHighlightLabel(newTitle);
 		setEdit(false);
 	};
 
@@ -59,7 +74,7 @@ const Title = ({ title }: { title?: string }) => {
 		<div className={styles.title}>
 			{edit ? (
 				<>
-					<input value={newTitle} onChange={e => setNewTitle(e.target.value)} />
+					<input className={styles.titleInput} value={newTitle} onChange={e => setNewTitle(e.target.value)} />
 					<SaveIcon className={styles.saveIcon} role='button' onClick={() => handleChange()} />
 				</>
 			) : (
@@ -83,44 +98,6 @@ const Views = ({ text, summary }: { text?: string; summary: string }) => {
 				</Text>
 				<Text size='sm' color='gray' className={styles.content}>
 					{text}
-					Steal the formula, upgrade your life Photo by Radek Grzybowski on Unsplash I never thought Id make a dime from writing online. Ive
-					taken zero courses, didnt study writing at school, had no mentors, nothing. There were no shortcuts in my journey. Yet, here I am
-					making $1.5k a month, writing about whatever I want on the internet. Its the best feeling in the world. So if youre sitting there
-					thinking ‘I want that, let me tell you 8 Steal the formula, upgrade your life Photo by Radek Grzybowski on Unsplash I never
-					thought Id make a dime from writing online. Ive taken zero courses, didnt study writing at school, had no mentors, nothing. There
-					were no shortcuts in my journey. Yet, here I am making $1.5k a month, writing about whatever I want on the internet. Its the best
-					feeling in the world. So if youre sitting there thinking ‘I want that, let me tell you 8 Steal the formula, upgrade your life
-					Photo by Radek Grzybowski on Unsplash I never thought Id make a dime from writing online. Ive taken zero courses, didnt study
-					writing at school, had no mentors, nothing. There were no shortcuts in my journey. Yet, here I am making $1.5k a month, writing
-					about whatever I want on the internet. Its the best feeling in the world. So if youre sitting there thinking ‘I want that, let me
-					tell you 8 Steal the formula, upgrade your life Photo by Radek Grzybowski on Unsplash I never thought Id make a dime from writing
-					online. Ive taken zero courses, didnt study writing at school, had no mentors, nothing. There were no shortcuts in my journey.
-					Yet, here I am making $1.5k a month, writing about whatever I want on the internet. Its the best feeling in the world. So if youre
-					sitting there thinking ‘I want that, let me tell you 8 Steal the formula, upgrade your life Photo by Radek Grzybowski on Unsplash
-					I never thought Id make a dime from writing online. Ive taken zero courses, didnt study writing at school, had no mentors,
-					nothing. There were no shortcuts in my journey. Yet, here I am making $1.5k a month, writing about whatever I want on the
-					internet. Its the best feeling in the world. So if youre sitting there thinking ‘I want that, let me tell you 8 Steal the formula,
-					upgrade your life Photo by Radek Grzybowski on Unsplash I never thought Id make a dime from writing online. Ive taken zero
-					courses, didnt study writing at school, had no mentors, nothing. There were no shortcuts in my journey. Yet, here I am making
-					$1.5k a month, writing about whatever I want on the internet. Its the best feeling in the world. So if youre sitting there
-					thinking ‘I want that, let me tell you 8 Steal the formula, upgrade your life Photo by Radek Grzybowski on Unsplash I never
-					thought Id make a dime from writing online. Ive taken zero courses, didnt study writing at school, had no mentors, nothing. There
-					were no shortcuts in my journey. Yet, here I am making $1.5k a month, writing about whatever I want on the internet. Its the best
-					feeling in the world. So if youre sitting there thinking ‘I want that, let me tell you8 Steal the formula, upgrade your life Photo
-					by Radek Grzybowski on Unsplash I never thought Id make a dime from writing online. Ive taken zero courses, didnt study writing at
-					school, had no mentors, nothing. There were no shortcuts in my journey. Yet, here I am making $1.5k a month, writing about
-					whatever I want on the internet. Its the best feeling in the world. So if youre sitting there thinking ‘I want that, let me tell
-					you 8 Steal the formula, upgrade your life Photo by Radek Grzybowski on Unsplash I never thought Id make a dime from writing
-					online. Ive taken zero courses, didnt study writing at school, had no mentors, nothing. There were no shortcuts in my journey.
-					Yet, here I am making $1.5k a month, writing about whatever I want on the internet. Its the best feeling in the world. So if youre
-					sitting there thinking ‘I want that, let me tell you 8 Steal the formula, upgrade your life Photo by Radek Grzybowski on Unsplash
-					I never thought Id make a dime from writing online. Ive taken zero courses, didnt study writing at school, had no mentors,
-					nothing. There were no shortcuts in my journey. Yet, here I am making $1.5k a month, writing about whatever I want on the
-					internet. Its the best feeling in the world. So if youre sitting there thinking ‘I want that, let me tell you 8 Steal the formula,
-					upgrade your life Photo by Radek Grzybowski on Unsplash I never thought Id make a dime from writing online. Ive taken zero
-					courses, didnt study writing at school, had no mentors, nothing. There were no shortcuts in my journey. Yet, here I am making
-					$1.5k a month, writing about whatever I want on the internet. Its the best feeling in the world. So if youre sitting there
-					thinking ‘I want that, let me tell you
 				</Text>
 			</section>
 			<section className={styles.section}>

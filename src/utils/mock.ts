@@ -1,5 +1,9 @@
 import { HighlightDataType } from '../services/highlights';
 
+export function delay<T>(func: Function, ms = 1000): Promise<T> {
+	return new Promise(resolve => setTimeout(() => resolve(func() as T), ms));
+}
+
 export const dummyHighlights: HighlightDataType[] = [
 	{
 		_id: '0',

@@ -1,0 +1,45 @@
+.dotLoader {
+	@apply inline-flex h-10 justify-center items-center overflow-hidden;
+}
+
+.dot {
+	@apply w-5 h-5 flex items-center justify-center mx-1 overflow-hidden border border-transparent;
+}
+
+.dot span {
+	@apply inline-block bg-primary rounded-full;
+	animation-name: blink;
+	animation-duration: 1.2s;
+	animation-iteration-count: infinite;
+	animation-fill-mode: both;
+}
+
+.dot:nth-child(2) span {
+	animation-delay: 0.2s;
+}
+
+.dot:nth-child(3) span {
+	animation-delay: 0.3s;
+}
+
+@keyframes blink {
+	0% {
+		opacity: 0.3;
+		width: 90%;
+		height: 90%;
+	}
+	50% {
+		opacity: 1;
+		width: 100%;
+		height: 100%;
+	}
+	100% {
+		opacity: 0.3;
+		width: 90%;
+		height: 90%;
+	}
+}
+
+.loaderContainer {
+	@apply flex flex-col gap-4 items-center justify-center w-full p-6;
+}
