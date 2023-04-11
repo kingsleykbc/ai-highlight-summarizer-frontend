@@ -1,0 +1,7 @@
+.highlightsList {
+	@apply grow flex flex-col gap-4 h-full;
+}
+
+.results {
+	@apply overflow-auto grow;
+}

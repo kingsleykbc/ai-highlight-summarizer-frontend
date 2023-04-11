@@ -1,9 +1,9 @@
 import { ReactNode, useState } from 'react';
 import styles from './Popup.module.css';
-import Text from '../../ui/Text/Text';
-import Button from '../../ui/Button/Button';
-import { GoSearch } from 'react-icons/go';
-import { BiHide } from 'react-icons/bi';
+import Text from '../../components/Text/Text';
+import Button from '../../components/Button/Button';
+import { MdOutlineSummarize as SummaryIcon } from 'react-icons/md';
+import { BiHide as CloseIcon } from 'react-icons/bi';
 
 export interface PopupProps {
 	children: ReactNode;
@@ -20,7 +20,7 @@ const Popup = ({ children }: PopupProps) => {
 					<div className={styles.contentBody}>{children}</div>
 				</div>
 			)}
-			<Button className={styles.popupButton} onClick={toggleShow} label={show ? <BiHide /> : <GoSearch />} />
+			<Button className={styles.popupButton} onClick={toggleShow} label={show ? <CloseIcon /> : <SummaryIcon />} />
 		</div>
 	);
 };

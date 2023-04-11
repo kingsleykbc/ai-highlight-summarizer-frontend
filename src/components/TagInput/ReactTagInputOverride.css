@@ -1,0 +1,15 @@
+.rti--container {
+	@apply !border-darkBorder border-2 bg-transparent min-h-[51px];
+}
+
+.rti--input {
+	@apply bg-transparent placeholder:text-textGray text-white outline-none p-0 w-full max-w-[100px] shrink;
+}
+
+.rti--tag {
+	@apply bg-transparent text-sm border-2 border-textGray rounded-full pl-2 font-semibold text-white gap-[0.6rem];
+}
+
+.rti--tag button {
+	@apply text-sm pl-0 opacity-50;
+}

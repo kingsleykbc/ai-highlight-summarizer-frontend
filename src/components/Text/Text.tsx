@@ -7,11 +7,19 @@ export interface TextProps {
 	size?: 'default-size' | 'xl' | 'lg' | 'md' | 'sm' | 'xs';
 	weight?: 'default-weight' | 'bold' | 'semibold' | 'normal';
 	color?: 'white' | 'gray';
+	className?: string;
 }
 
-const Text = ({ children, tag = 'span', size = 'default-size', color = 'white', weight = 'default-weight' }: TextProps) => {
+const Text = ({
+	children,
+	tag = 'span',
+	size = 'default-size',
+	color = 'white',
+	weight = 'default-weight',
+	className: cName = ''
+}: TextProps) => {
 	const Tag = tag;
-	const className = [styles.text, styles[tag], styles[size], styles[color], styles[weight]].join(' ');
+	const className = [styles.text, styles[tag], styles[size], styles[color], styles[weight], cName].join(' ');
 	return <Tag className={className}>{children}</Tag>;
 };
 

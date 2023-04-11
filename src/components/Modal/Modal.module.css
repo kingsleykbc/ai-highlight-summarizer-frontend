@@ -1,0 +1,15 @@
+.modal {
+	@apply fixed z-10 inset-0 overflow-y-auto;
+}
+
+.screen {
+	@apply flex items-center justify-center min-h-screen;
+}
+
+.back {
+	@apply fixed inset-0 transition-opacity bg-black opacity-30;
+}
+
+.box {
+	@apply bg-white rounded-lg overflow-hidden shadow-xl transform transition-all px-4 py-5 sm:p-6;
+}

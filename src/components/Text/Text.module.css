@@ -15,7 +15,7 @@
 }
 
 .text.gray {
-	@apply text-gray-400;
+	@apply text-textGray;
 }
 
 .text.xl {

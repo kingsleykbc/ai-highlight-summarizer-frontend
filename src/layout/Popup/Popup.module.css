@@ -7,7 +7,7 @@
 }
 
 .content {
-	@apply bg-container rounded-xl bottom-20 fixed right-20 w-[calc(100%-100px)] h-[calc(100%-100px)] p-6 pt-4 max-w-md max-h-[600px] shadow-lg flex flex-col gap-3;
+	@apply bg-container rounded-xl bottom-20 fixed right-20 w-[calc(100%-100px)] h-[calc(100%-100px)] p-6 pt-4 max-w-lg max-h-[700px] shadow-lg flex flex-col gap-3;
 }
 
 .titleSection {

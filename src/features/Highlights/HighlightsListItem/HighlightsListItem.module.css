@@ -1,0 +1,15 @@
+.highlightListItem {
+	@apply bg-containerDarker rounded-md py-2 px-4 mb-2 transition-all cursor-pointer hover:bg-darkHighlight;
+}
+
+.summary {
+	@apply my-3 max-w-full whitespace-nowrap overflow-hidden text-ellipsis;
+}
+
+.bottomSection {
+	@apply border-t border-darkBorder pt-2 pb-1 flex flex-wrap gap-4 justify-between;
+}
+
+.tags {
+	@apply max-w-[24h] overflow-hidden whitespace-nowrap text-ellipsis;
+}

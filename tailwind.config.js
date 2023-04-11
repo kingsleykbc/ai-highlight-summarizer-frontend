@@ -4,11 +4,13 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
-				container: '#606060',
-				containerDarker: '#474747',
+				container: 'rgb(71, 71, 71)',
+				containerDarker: 'rgb(51, 51, 51)',
 				containerDarkest: '#2B2B2B',
-				darkBorder: '#3A3A3A',
-				primary: '#A76DFF'
+				darkHighlight: 'rgb(45, 45, 45)',
+				darkBorder: '#212121',
+				primary: '#A76DFF',
+				textGray: '#9c9c9c'
 			}
 		}
 	},
