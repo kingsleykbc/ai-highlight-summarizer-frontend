@@ -38,7 +38,7 @@ Replace `your-username` with your GitHub username, or use the correct URL if the
 1.  Build the extension by running:
     `npm run build`
 
-This command will generate a `build` folder in the project root directory.
+This command will generate an updated `content.js` file in the `extension` folder in the project root directory.
 
 ## Load the Extension in Chrome
 
@@ -46,6 +46,6 @@ This command will generate a `build` folder in the project root directory.
 2.  Click on the three-dot menu in the upper-right corner and navigate to **More tools** > **Extensions**.
 3.  Enable **Developer mode** by toggling the switch in the upper-right corner of the Extensions page.
 4.  Click on the **Load unpacked** button.
-5.  In the file picker dialog, navigate to the `build` folder generated earlier in the project root directory, and click **Select Folder** (or **Open**).
+5.  In the file picker dialog, navigate to the `extension` folder generated earlier in the project root directory, and click **Select Folder** (or **Open**).
 
 The AI-Highlighted-Summarizer extension should now be loaded in your Chrome browser, and you should see its icon next to the address bar. Click on the icon to open the popup and start using the extension!
