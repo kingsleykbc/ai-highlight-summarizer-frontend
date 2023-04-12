@@ -1,0 +1,24 @@
+.app input,
+.app select {
+	@apply border-2 border-darkBorder rounded-md text-base bg-transparent text-white placeholder:text-textGray py-2 px-[12px];
+}
+
+.app select {
+	@apply cursor-pointer;
+}
+
+.app option {
+	@apply text-black;
+}
+
+.app #portal {
+	@apply relative z-[7000];
+}
+
+.app ::-webkit-scrollbar {
+	@apply w-2 h-2 rounded-full bg-[rgb(65,65,65)];
+}
+
+.app ::-webkit-scrollbar-thumb {
+	@apply rounded-full bg-[rgb(95,95,95)] cursor-grab h-2;
+}
