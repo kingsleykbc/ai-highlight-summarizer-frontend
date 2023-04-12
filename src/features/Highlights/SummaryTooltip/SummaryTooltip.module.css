@@ -1,5 +1,5 @@
 .summaryTooltip {
-	@apply z-[1000] fixed bottom-10 left-1/2 -translate-x-1/2 bg-container rounded-full w-[90%] max-w-[800px] flex gap-4 p-2;
+	@apply z-[1000] fixed top-5 left-1/2 -translate-x-1/2 bg-container rounded-full w-[90%] max-w-[800px] flex gap-4 p-2;
 }
 
 .selectedText {
