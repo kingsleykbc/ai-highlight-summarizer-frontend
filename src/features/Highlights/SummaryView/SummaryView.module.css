@@ -14,11 +14,11 @@
 	@apply h-full flex flex-col;
 }
 .summary {
-	@apply grow h-fit bg-containerDarker overflow-auto rounded-md flex flex-col-reverse md:flex-row items-start gap-2 p-6 pb-14;
+	@apply grow h-full bg-containerDarker overflow-auto rounded-md md:flex md:justify-normal justify-end flex-row-reverse items-start gap-2 p-6 pb-14;
 }
 
 .section {
-	@apply shrink-0 grow w-full md:w-[calc(50%-40px)];
+	@apply shrink-0 grow-0 md:grow w-full md:w-[calc(50%-40px)];
 }
 
 .label {
@@ -30,7 +30,7 @@
 }
 
 .bottomSection {
-	@apply flex justify-between items-center pt-4;
+	@apply flex justify-between items-center pt-4 gap-3 flex-col md:flex-row;
 }
 
 .tagsAndDates {

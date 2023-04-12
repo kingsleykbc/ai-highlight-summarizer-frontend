@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/content.js",
+    "index.html": "/index.html",
+    "content.js.map": "/content.js.map"
+  },
+  "entrypoints": [
+    "content.js"
+  ]
+}

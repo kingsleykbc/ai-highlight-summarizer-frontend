@@ -9,10 +9,15 @@ import { useHighlights } from '../../../contexts/HighlightsContext';
 const HighlightsListFilter = () => {
 	const [tags, setTags] = useState<string[]>([]);
 	const [sortBy, setSortBy] = useState<SortByType>('newest');
+	const [mounted, setMounted] = useState(false);
 	const { refetchHighlights } = useHighlights();
 
 	useEffect(() => {
-		refetchHighlights({ tags, sortBy });
+		if (mounted) {
+			refetchHighlights({ tags, sortBy });
+		} else {
+			setMounted(true);
+		}
 	}, [tags, sortBy]);
 
 	return (

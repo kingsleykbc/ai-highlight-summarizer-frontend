@@ -49,7 +49,7 @@ const SummaryView = ({ data, show, toggle }: SummaryViewProps) => {
 							{displayTags(tags)}
 						</Text>
 						<Dot className={styles.dot} />
-						<Text>{fullDate(createdAt)}</Text>
+						<Text size='sm'>{fullDate(createdAt)}</Text>
 					</div>
 					<Button loading={loading} onClick={() => handleDelete()} label='Delete' />
 				</div>
@@ -92,14 +92,6 @@ const Title = ({ title, changeHighlightLabel }: TitleProps) => {
 const Views = ({ text, summary }: { text?: string; summary: string }) => {
 	return (
 		<div className={styles.summary}>
-			<section className={[styles.section, styles.original].join(' ')}>
-				<Text size='sm' className={styles.label}>
-					Original
-				</Text>
-				<Text size='sm' color='gray' className={styles.content}>
-					{text}
-				</Text>
-			</section>
 			<section className={styles.section}>
 				<div className='md:text-right w-full'>
 					<Text size='sm' className={styles.label}>
@@ -108,6 +100,14 @@ const Views = ({ text, summary }: { text?: string; summary: string }) => {
 				</div>
 				<Text size='sm' className={styles.content}>
 					{summary}
+				</Text>
+			</section>
+			<section className={[styles.section, styles.original].join(' ')}>
+				<Text size='sm' className={styles.label}>
+					Original
+				</Text>
+				<Text size='sm' color='gray' className={styles.content}>
+					{text}
 				</Text>
 			</section>
 		</div>

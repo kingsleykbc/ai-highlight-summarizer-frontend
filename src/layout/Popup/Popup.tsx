@@ -10,7 +10,7 @@ export interface PopupProps {
 	children: ReactNode;
 }
 const Popup = ({ children }: PopupProps) => {
-	const [show, setShow] = useState(true);
+	const [show, setShow] = useState(false);
 	const toggleShow = () => setShow(!show);
 
 	return (

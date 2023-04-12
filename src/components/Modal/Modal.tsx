@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import styles from './Modal.module.css';
 import Text from '../Text/Text';
+import Portal from '../Portal/Portal';
 
 type ModalProps = {
 	children: ReactNode;
@@ -24,18 +25,20 @@ const Modal = ({ children, show, toggle, title, width, height }: ModalProps) => 
 		);
 
 	return (
-		<div className={styles.modal}>
-			<div className={styles.back} onClick={toggle} />
-			<div style={{ width, height }} className={styles.box}>
-				<div className={styles.topSection}>
-					<div>{titleWidget}</div>
-					<button className={styles.closeButton} onClick={toggle}>
-						&times;
-					</button>
+		<Portal>
+			<div className={styles.modal}>
+				<div className={styles.back} onClick={toggle} />
+				<div style={{ width, height }} className={styles.box}>
+					<div className={styles.topSection}>
+						<div>{titleWidget}</div>
+						<button className={styles.closeButton} onClick={toggle}>
+							&times;
+						</button>
+					</div>
+					<div className={styles.content}>{children}</div>
 				</div>
-				<div className={styles.content}>{children}</div>
 			</div>
-		</div>
+		</Portal>
 	);
 };
 

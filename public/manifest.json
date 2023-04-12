@@ -8,10 +8,19 @@
 		"default_icon": "favicon.ico"
 	},
 	"permissions": ["activeTab", "storage"],
+	"action": {
+		"default_popup": "index.html",
+		"default_icon": {
+			"16": "logo16.png",
+			"48": "logo48.png",
+			"128": "logo128.png"
+		}
+	},
 	"content_scripts": [
 		{
 			"matches": ["<all_urls>"],
-			"js": ["contentScript.js"]
+			"js": ["content.js"],
+			"run_at": "document_end"
 		}
 	],
 	"web_accessible_resources": ["static/js/*"],
@@ -31,9 +40,5 @@
 			"type": "image/png",
 			"sizes": "512x512"
 		}
-	],
-	"start_url": ".",
-	"display": "standalone",
-	"theme_color": "#000000",
-	"background_color": "#ffffff"
+	]
 }

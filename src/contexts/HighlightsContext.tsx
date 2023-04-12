@@ -10,6 +10,7 @@ interface HighlightsProviderProps {
 
 export interface HighlightsContextType {
 	highlights: HighlightDataType[] | null;
+	generateSummary: (text: string) => void;
 	refetchHighlights: (filters?: HighlightsFetchFiltersType) => void;
 	deleteHighlight: (id: string) => void;
 	changeHighlightLabel: (newLabel: string) => void;
@@ -21,11 +22,12 @@ export interface HighlightsContextType {
 
 export const HighlightsContext = createContext<HighlightsContextType>({
 	highlights: null,
+	generateSummary: () => null,
 	refetchHighlights: () => null,
 	deleteHighlight: () => null,
 	changeHighlightLabel: () => null,
-	disabled: false,
 	toggleDisabled: () => null,
+	disabled: false,
 	loading: false,
 	error: null
 });
@@ -53,6 +55,18 @@ export function HighlightsProvider({ authState, children }: HighlightsProviderPr
 
 			const newHighlights = await delay<HighlightDataType[]>(() => dummyHighlights, 1000);
 			setHighlights(newHighlights);
+		} catch (e: any) {
+			setError(e.message);
+		}
+		setLoading(false);
+	};
+
+	const generateSummary = async (text: string) => {
+		setLoading(true);
+		setError(null);
+		try {
+			// TODO: hANDLE FETCH HERE
+			await fetchHighlights();
 		} catch (e: any) {
 			setError(e.message);
 		}
@@ -92,6 +106,7 @@ export function HighlightsProvider({ authState, children }: HighlightsProviderPr
 			loading,
 			error,
 			highlights,
+			generateSummary,
 			changeHighlightLabel,
 			disabled,
 			toggleDisabled,

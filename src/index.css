@@ -15,6 +15,10 @@ option {
 	@apply text-black;
 }
 
+#portal {
+	@apply relative z-[7000];
+}
+
 ::-webkit-scrollbar {
 	@apply w-2 h-2 rounded-full bg-[rgb(65,65,65)];
 }

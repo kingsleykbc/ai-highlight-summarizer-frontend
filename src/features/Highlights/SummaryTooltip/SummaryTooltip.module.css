@@ -1,0 +1,7 @@
+.summaryTooltip {
+	@apply z-30 absolute bg-container rounded-full flex gap-4 p-2;
+}
+
+.selectedText {
+	@apply whitespace-nowrap w-full max-w-[300px] overflow-hidden text-ellipsis bg-containerDarker p-2 pl-3 rounded-full;
+}
