@@ -1,0 +1,15 @@
+.field {
+	@apply mb-4;
+}
+
+.label {
+	@apply font-bold text-sm block mb-1 text-textGray;
+}
+
+.input {
+	@apply w-full !bg-transparent mb-1;
+}
+
+.field h5 {
+	@apply !m-auto block;
+}

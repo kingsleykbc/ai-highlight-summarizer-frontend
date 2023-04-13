@@ -1,7 +1,14 @@
 import { createContext, useContext, useState, useEffect, useMemo } from 'react';
-import { HighlightDataType, HighlightsFetchFiltersType } from '../services/highlights';
-import { delay, dummyHighlights } from '../utils/mock';
+import {
+	HighlightDataType,
+	HighlightsFetchFiltersType,
+	getHighights,
+	getSummary,
+	removeHighlight,
+	updateHighlightLabel
+} from '../services/highlights';
 import { AuthContextType } from './AuthContext';
+import { useSnackbar } from './SnackbarContext';
 
 interface HighlightsProviderProps {
 	children: React.ReactNode;
@@ -13,7 +20,7 @@ export interface HighlightsContextType {
 	generateSummary: (text: string) => void;
 	refetchHighlights: (filters?: HighlightsFetchFiltersType) => void;
 	deleteHighlight: (id: string) => void;
-	changeHighlightLabel: (newLabel: string) => void;
+	changeHighlightLabel: (id: string, newLabel: string) => void;
 	disabled: boolean;
 	toggleDisabled: () => void;
 	loading: boolean;
@@ -41,6 +48,14 @@ export function HighlightsProvider({ authState, children }: HighlightsProviderPr
 	const [error, setError] = useState(null);
 	const [disabled, setDisabled] = useState(false);
 	const toggleDisabled = () => setDisabled(!disabled);
+	const { showSnackbar } = useSnackbar();
+
+	const handleError = (e: any) => {
+		if (e.message === 'Token has expired') {
+			authState.logout();
+		}
+		setError(e.message);
+	};
 
 	const fetchHighlights = async (newFilters?: HighlightsFetchFiltersType) => {
 		setLoading(true);
@@ -51,36 +66,37 @@ export function HighlightsProvider({ authState, children }: HighlightsProviderPr
 				queryFilters = newFilters;
 				setFilters(newFilters);
 			}
-			// TODO: hANDLE FETCH HERE
-
-			const newHighlights = await delay<HighlightDataType[]>(() => dummyHighlights, 1000);
+			const newHighlights = await getHighights(queryFilters || undefined);
 			setHighlights(newHighlights);
 		} catch (e: any) {
-			setError(e.message);
+			handleError(e);
 		}
 		setLoading(false);
 	};
 
 	const generateSummary = async (text: string) => {
+		if (!text.trim()) return;
 		setLoading(true);
 		setError(null);
 		try {
-			// TODO: hANDLE FETCH HERE
-			await fetchHighlights();
+			await getSummary(text);
+			fetchHighlights();
+			showSnackbar({ message: 'Highlight summarized!!' });
 		} catch (e: any) {
-			setError(e.message);
+			handleError(e);
 		}
 		setLoading(false);
 	};
 
-	const changeHighlightLabel = async (newLabel: string) => {
+	const changeHighlightLabel = async (id: string, newLabel: string) => {
 		setLoading(true);
 		setError(null);
 		try {
-			// TODO: hANDLE FETCH HERE
+			await updateHighlightLabel(id, newLabel);
 			fetchHighlights();
+			showSnackbar({ message: 'Label changed' });
 		} catch (e: any) {
-			setError(e.message);
+			handleError(e);
 		}
 		setLoading(false);
 	};
@@ -89,17 +105,18 @@ export function HighlightsProvider({ authState, children }: HighlightsProviderPr
 		setLoading(true);
 		setError(null);
 		try {
-			// TODO: hANDLE FETCH HERE
+			await removeHighlight(id);
 			await fetchHighlights();
+			showSnackbar({ message: 'Highlight deleted' });
 		} catch (e: any) {
-			setError(e.message);
+			handleError(e);
 		}
 		setLoading(false);
 	};
 
 	useEffect(() => {
 		fetchHighlights();
-	}, []);
+	}, [authState.user]);
 
 	const values = useMemo(
 		() => ({

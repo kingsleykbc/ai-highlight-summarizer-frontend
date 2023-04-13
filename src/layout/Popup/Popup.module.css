@@ -11,9 +11,21 @@
 }
 
 .titleSection {
-	@apply flex items-center justify-between;
+	@apply flex items-center justify-between shrink-0;
 }
 
 .contentBody {
 	@apply grow overflow-auto;
+}
+
+.buttons {
+	@apply flex gap-2;
+}
+
+.logoutButton {
+	@apply py-1 px-[12px] aspect-square bg-containerDarkest;
+}
+
+.logoutButton svg {
+	@apply text-xl;
 }

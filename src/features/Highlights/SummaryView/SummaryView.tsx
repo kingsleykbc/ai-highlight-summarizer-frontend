@@ -18,8 +18,9 @@ export interface SummaryViewProps {
 }
 
 interface TitleProps {
+	id: string;
 	title?: string;
-	changeHighlightLabel: (newLabel: string) => void;
+	changeHighlightLabel: (id: string, newLabel: string) => void;
 }
 
 const SummaryView = ({ data, show, toggle }: SummaryViewProps) => {
@@ -35,7 +36,7 @@ const SummaryView = ({ data, show, toggle }: SummaryViewProps) => {
 
 	return (
 		<Modal
-			title={<Title changeHighlightLabel={changeHighlightLabel} title={data?.label} />}
+			title={<Title id={_id} changeHighlightLabel={changeHighlightLabel} title={data?.label} />}
 			show={show}
 			toggle={toggle}
 			height='800px'
@@ -60,13 +61,13 @@ const SummaryView = ({ data, show, toggle }: SummaryViewProps) => {
 
 export default SummaryView;
 
-const Title = ({ title, changeHighlightLabel }: TitleProps) => {
+const Title = ({ title, id, changeHighlightLabel }: TitleProps) => {
 	const [edit, setEdit] = useState(false);
 	const [newTitle, setNewTitle] = useState(title || '');
 	if (!title) return null;
 
 	const handleChange = () => {
-		changeHighlightLabel(newTitle);
+		changeHighlightLabel(id, newTitle);
 		setEdit(false);
 	};
 

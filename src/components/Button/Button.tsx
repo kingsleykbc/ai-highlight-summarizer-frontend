@@ -6,7 +6,7 @@ import { DotLoader } from '../Loader/Loader';
 interface ButtonProps {
 	label: string | ReactNode;
 	color?: string;
-	onClick: () => void;
+	onClick?: () => void;
 	className?: string;
 	disabled?: boolean;
 	loading?: boolean;

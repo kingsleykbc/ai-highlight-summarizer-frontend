@@ -13,6 +13,8 @@ Before you begin, ensure you have the following software installed on your compu
 - [Git](https://git-scm.com/downloads)
 - [Google Chrome](https://www.google.com/chrome/) (latest version)
 
+You will also need to have the server running locally on its default port (8090) - [https://github.com/kingsleykbc/ai-highlight-summarizer-server](https://github.com/kingsleykbc/ai-highlight-summarizer-server)
+
 ## Clone the Repository
 
 1.  Open a terminal or command prompt.
@@ -49,3 +51,7 @@ This command will generate an updated `content.js` file in the `extension` folde
 5.  In the file picker dialog, navigate to the `extension` folder generated earlier in the project root directory, and click **Select Folder** (or **Open**).
 
 The AI-Highlighted-Summarizer extension should now be loaded in your Chrome browser, and you should see its icon next to the address bar. Click on the icon to open the popup and start using the extension!
+
+### Alternatively
+
+You can run the code with `npm start`, to have it run as a normal app on an HTML page

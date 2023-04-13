@@ -1,16 +1,19 @@
-import React, { useEffect, useLayoutEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import styles from './SummaryTooltip.module.css';
 import { useHighlights } from '../../../contexts/HighlightsContext';
 import Button from '../../../components/Button/Button';
 import Text from '../../../components/Text/Text';
+import { useAuth } from '../../../contexts/AuthContext';
 
 const SummaryTooltip: React.FC = () => {
 	const [selectedText, setSelectedText] = useState('');
 	const { disabled, generateSummary, loading } = useHighlights();
+	const { user } = useAuth();
 	const tooltipRef = useRef<HTMLDivElement>(null);
+	const canHighlight = !disabled && user !== null;
 
 	const handleMouseUp = (e: MouseEvent) => {
-		if (disabled || (tooltipRef.current && tooltipRef.current.contains(e.target as Node))) return;
+		if (!canHighlight || (tooltipRef.current && tooltipRef.current.contains(e.target as Node))) return;
 		const text = window.getSelection()?.toString().trim() || '';
 		if (text) {
 			setSelectedText(text);
@@ -25,7 +28,7 @@ const SummaryTooltip: React.FC = () => {
 		return () => {
 			document.removeEventListener('mouseup', handleMouseUp);
 		};
-	}, [disabled]);
+	}, [disabled, user]);
 
 	if (!selectedText) {
 		return null;

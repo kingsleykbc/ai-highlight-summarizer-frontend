@@ -5,3 +5,11 @@
 .results {
 	@apply overflow-auto grow;
 }
+
+.empty {
+	@apply border-2 rounded-lg border-dashed border-darkBorder py-8 px-4 text-center font-bold text-white;
+}
+
+.empty span {
+	@apply block font-normal text-sm mt-4 text-textGray;
+}

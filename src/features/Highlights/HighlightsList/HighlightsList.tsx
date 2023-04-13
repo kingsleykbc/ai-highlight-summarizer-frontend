@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import HighlightsListFilter from '../HighlightsListFilter/HighlightsListFilter';
 import HighlightsListItem from '../HighlightsListItem/HighlightsListItem';
 import styles from './HighlightsList.module.css';
@@ -19,6 +19,13 @@ const HighlightsList = () => {
 		toggleFullSummary();
 	};
 
+	useEffect(() => {
+		if (highlights && highlights.length > 0 && highlightSummary) {
+			const updatedHighlightSummary = highlights.find(highlight => highlight._id === highlightSummary._id);
+			setHighlightSummary(updatedHighlightSummary || null);
+		}
+	}, [highlights]);
+
 	return (
 		<div className={styles.highlightsList}>
 			<HighlightsListFilter />
@@ -27,6 +34,10 @@ const HighlightsList = () => {
 					<Loader message='Fetching Highlights' />
 				) : error ? (
 					<Error message={error} />
+				) : highlights?.length === 0 ? (
+					<div className={styles.empty}>
+						No highlight Summaries yet. <span>Highlight any text on the page to start</span>
+					</div>
 				) : (
 					highlights?.map(data => <HighlightsListItem key={data._id} data={data} onClick={() => handleHighlightClick(data)} />)
 				)}

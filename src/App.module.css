@@ -22,3 +22,7 @@
 .app ::-webkit-scrollbar-thumb {
 	@apply rounded-full bg-[rgb(95,95,95)] cursor-grab h-2;
 }
+
+.app h5 {
+	@apply text-white bg-red-500 w-max max-w-full rounded-md px-2 py-1 text-sm font-semibold m-1;
+}

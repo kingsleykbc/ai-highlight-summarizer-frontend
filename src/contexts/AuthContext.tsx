@@ -1,20 +1,23 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect, useMemo } from 'react';
 import Cookies from 'js-cookie';
-
-interface User {
-	email: string;
-}
+import { LoginParam, SignupParam, login, signup } from '../services/auth';
+import { UserType, getUserProfile } from '../services/users';
+import { useSnackbar } from './SnackbarContext';
 
 export interface AuthContextType {
-	user: User | null;
+	user: UserType | null;
 	loading: boolean;
-	login: (email: string, password: string) => void;
+	error: string | null;
+	signup: (data: SignupParam) => void;
+	login: (data: LoginParam) => void;
 	logout: () => void;
 }
 
 export const AuthContext = createContext<AuthContextType>({
 	user: null,
+	error: null,
 	loading: true,
+	signup: () => {},
 	login: () => {},
 	logout: () => {}
 });
@@ -22,37 +25,67 @@ export const AuthContext = createContext<AuthContextType>({
 export const useAuth = () => useContext(AuthContext);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-	const [user, setUser] = useState<User | null>(null);
-	const [loading, setLoading] = useState(true);
+	const [user, setUser] = useState<UserType | null>(null);
+	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState(null);
+	const { showSnackbar } = useSnackbar();
 
-	const login = async (email: string, password: string) => {
-		// TODO: Handle login
-		const user: User = { email };
-		Cookies.set('user', JSON.stringify(user), { expires: 60 });
-		setUser(user);
+	const fetchProfile = async (token?: string) => {
+		setLoading(true);
+		setError(null);
+		try {
+			const data = await getUserProfile(token);
+			setUser(data);
+		} catch (e: any) {
+			if (e.message === 'Token has expired') {
+				logout();
+			}
+			setError(e.message);
+		}
+		setLoading(false);
+	};
+
+	const handleSignup = async (data: SignupParam) => {
+		setLoading(true);
+		setError(null);
+		try {
+			const { access_token } = await signup(data);
+			Cookies.set('user', access_token, { expires: 60 });
+			fetchProfile(access_token);
+		} catch (e: any) {
+			setError(e.message);
+		}
+		setLoading(false);
+		showSnackbar({ message: 'Signup successful' });
+	};
+
+	const handleLogin = async (data: LoginParam) => {
+		setLoading(true);
+		setError(null);
+		try {
+			const { access_token } = await login(data);
+			Cookies.set('user', access_token, { expires: 60 });
+			fetchProfile(access_token);
+		} catch (e: any) {
+			setError(e.message);
+		}
+		setLoading(false);
+		showSnackbar({ message: 'Login successful' });
 	};
 
 	const logout = () => {
-		// TODO: Handle logout
 		Cookies.remove('user');
 		setUser(null);
 	};
 
 	useEffect(() => {
-		const storedUser = Cookies.get('user');
-		if (storedUser) {
-			const user = JSON.parse(storedUser);
-			setUser(user);
+		const auth = Cookies.get('user');
+		if (auth) {
+			fetchProfile(auth);
 		}
-		setLoading(false);
 	}, []);
 
-	const values = {
-		loading,
-		user: user,
-		login: login,
-		logout: logout
-	};
+	const values = useMemo(() => ({ loading, error, user, login: handleLogin, signup: handleSignup, logout }), [loading, error, user]);
 
 	return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 }
