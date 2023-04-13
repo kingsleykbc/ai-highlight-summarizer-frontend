@@ -1,9 +1,17 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
 import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe('App component', () => {
+	test('renders popup', () => {
+		render(<App />);
+		const summaryTooltipElement = screen.getByTestId('popup');
+		expect(summaryTooltipElement).toBeInTheDocument();
+	});
+
+	test('renders toggle button', () => {
+		render(<App />);
+		const summaryTooltipElement = screen.getByTestId('popup');
+		expect(summaryTooltipElement).toBeInTheDocument();
+	});
 });

@@ -10,12 +10,13 @@ interface ButtonProps {
 	className?: string;
 	disabled?: boolean;
 	loading?: boolean;
+	testID?: string;
 }
 
-const Button = ({ label, onClick, color, className: cName = '', disabled = false, loading = false }: ButtonProps) => {
+const Button = ({ label, testID, onClick, color, className: cName = '', disabled = false, loading = false }: ButtonProps) => {
 	const className = classnames({ disabled: styles.disabled, loading: styles.loading }, [styles.button, cName]);
 	return (
-		<button style={{ backgroundColor: color }} onClick={onClick} disabled={disabled || loading} className={className}>
+		<button data-testid={testID} style={{ backgroundColor: color }} onClick={onClick} disabled={disabled || loading} className={className}>
 			{loading ? <DotLoader className={styles.loader} color='white' /> : label}
 		</button>
 	);

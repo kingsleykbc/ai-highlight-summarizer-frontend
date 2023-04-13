@@ -23,6 +23,8 @@ export interface HighlightsContextType {
 	changeHighlightLabel: (id: string, newLabel: string) => void;
 	disabled: boolean;
 	toggleDisabled: () => void;
+	show: boolean;
+	toggleShow: () => void;
 	loading: boolean;
 	error: string | null;
 }
@@ -34,6 +36,8 @@ export const HighlightsContext = createContext<HighlightsContextType>({
 	deleteHighlight: () => null,
 	changeHighlightLabel: () => null,
 	toggleDisabled: () => null,
+	toggleShow: () => null,
+	show: false,
 	disabled: false,
 	loading: false,
 	error: null
@@ -48,6 +52,8 @@ export function HighlightsProvider({ authState, children }: HighlightsProviderPr
 	const [error, setError] = useState(null);
 	const [disabled, setDisabled] = useState(false);
 	const toggleDisabled = () => setDisabled(!disabled);
+	const [show, setShow] = useState(false);
+	const toggleShow = () => setShow(!show);
 	const { showSnackbar } = useSnackbar();
 
 	const handleError = (e: any) => {
@@ -126,11 +132,13 @@ export function HighlightsProvider({ authState, children }: HighlightsProviderPr
 			generateSummary,
 			changeHighlightLabel,
 			disabled,
+			show,
+			toggleShow,
 			toggleDisabled,
 			deleteHighlight,
 			refetchHighlights: fetchHighlights
 		}),
-		[loading, error, highlights, disabled]
+		[loading, error, highlights, disabled, show]
 	);
 
 	return <HighlightsContext.Provider value={values}>{children}</HighlightsContext.Provider>;

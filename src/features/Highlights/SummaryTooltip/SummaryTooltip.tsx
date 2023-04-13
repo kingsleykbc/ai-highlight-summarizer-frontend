@@ -40,10 +40,10 @@ const SummaryTooltip: React.FC = () => {
 	};
 
 	return (
-		<div ref={tooltipRef} className={styles.summaryTooltip}>
+		<div ref={tooltipRef} className={styles.summaryTooltip} data-testid='summary-tooltip'>
 			<Text size='sm' className={styles.selectedText}>
 				<Text size='sm' color='gray'>
-					Selected:{' '}
+					Selected:
 				</Text>
 				{selectedText}
 			</Text>

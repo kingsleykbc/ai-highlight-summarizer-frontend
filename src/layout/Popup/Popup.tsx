@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react';
+import { ReactNode } from 'react';
 import styles from './Popup.module.css';
 import Text from '../../components/Text/Text';
 import Button from '../../components/Button/Button';
@@ -11,27 +11,30 @@ import { useAuth } from '../../contexts/AuthContext';
 export interface PopupProps {
 	children: ReactNode;
 }
+interface HeadingProps {
+	disabled: boolean;
+	toggleDisabled: () => void;
+}
+
 const Popup = ({ children }: PopupProps) => {
-	const [show, setShow] = useState(false);
-	const toggleShow = () => setShow(!show);
+	const { show, toggleShow, disabled, toggleDisabled } = useHighlights();
 
 	return (
-		<div className={styles.popup}>
+		<div data-testid='popup' className={styles.popup}>
 			{show && (
 				<div className={styles.content}>
-					<Heading />
+					<Heading disabled={disabled} toggleDisabled={toggleDisabled} />
 					<div className={styles.contentBody}>{children}</div>
 				</div>
 			)}
-			<Button className={styles.popupButton} onClick={toggleShow} label={show ? <CloseIcon /> : <SummaryIcon />} />
+			<Button testID='toggleButton' className={styles.popupButton} onClick={toggleShow} label={show ? <CloseIcon /> : <SummaryIcon />} />
 		</div>
 	);
 };
 
 export default Popup;
 
-const Heading = () => {
-	const { disabled, toggleDisabled } = useHighlights();
+const Heading = ({ disabled, toggleDisabled }: HeadingProps) => {
 	const { user, logout } = useAuth();
 
 	if (!user) {
